@@ -1,0 +1,76 @@
+15号~18号陪女朋友做近视眼手术，一直没有学习Python，今天重新开始继续学习！
+
+关于filter：非常好用的筛选函数，可以用来筛选符合条件的元素，和map()类似，filter()也接收一个函数和一个序列。
+和map()不同的是，filter()把传入的函数依次作用于每个元素，然后根据返回值是True还是False决定保留还是丢弃该元素。
+
+
+eg: 利用filter筛选list中≥50的数字
+
+list1=[1,2,3,4,5,6,50,165,55]
+
+def tell_if_big(n):
+    if n>= 50:
+        return 1
+    else:
+        return 0
+
+print(list(filter(tell_if_big,list1)))
+
+
+
+
+eg:   假设我们用一组tuple表示学生名字和成绩：
+
+L = [('Bob', 75), ('Adam', 92), ('Bart', 66), ('Lisa', 88)]
+请用sorted()对上述列表分别按名字排序：
+
+code:
+
+L = [('Bob', 75), ('Adam', 92), ('Bart', 66), ('Lisa', 88)]
+M =['A','B','C','a','z']
+
+def is_same(str1):
+    return lambda str2:str2[i][0]==str1
+
+def by_name(t):
+    i=0
+    name=[]
+    name1=[]
+    length=len(t)
+    while i < length:
+        name.append(t[i][0])
+        i=i+1
+    name=sorted(name,key=str.lower)
+    i=0
+    j=0
+    while i < length:
+        j=0
+        while j<length:
+            if t[j][0]==name[i]:
+                name1.append(t[j])
+                break
+            j=j+1
+        i=i+1
+    print(name1)
+
+
+by_name(L)
+
+方法2:
+
+L = [('Bob', 75), ('Adam', 92), ('Bart', 66), ('Lisa', 88)]
+
+def by_name(n):
+    return n[0]
+def by_num(n):
+    return n[1]
+
+
+#将key作用于每一个元素
+print(list(sorted(L,key=by_name)))
+print(list(sorted(L,key=by_num)))
+
+#关键要理解key
+是作用于每一个元素的！在key作用之后，才进行sorted！
+这是用好sorted函数的关键！
+
